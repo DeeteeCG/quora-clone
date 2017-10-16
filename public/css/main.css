@@ -1,3 +1,23 @@
 .logo {
   width: 15%;
 }
+
+.my_question {
+  box-sizing: border-box;
+  width: 50%;
+  float: left;
+  padding-left: 32px;
+  display: block;
+}
+
+.my_answer {
+  /*box-sizing: border-box;*/
+  /*width: 50%;*/
+  /*float: left;*/
+  padding-left: 32px;
+  display: inline-block;
+}
+
+h4 span {
+  font-weight: normal;
+}

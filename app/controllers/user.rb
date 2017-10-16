@@ -39,6 +39,6 @@ get '/logout' do
 end
 
 get '/users/:id' do
-  # @user = User.find(params[:id])
+  @user = User.find(params[:id])
   erb :"/static/profile"
 end

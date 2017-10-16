@@ -1,10 +1,18 @@
+
+  <link rel="stylesheet" type"text/css" href="/css/main.css">
+
+
 <% all_questions = Question.all.reverse %>
 <% all_questions.each do |x| %>
   <p>-----------------------------------------------------------------------------------------------</p>
-  <h4><%= x.question_content %></h4>
+  <h4><%= x.question_content %>
+  <span><a href="/users/<%=User.find(x.user_id).id%>" class="username">by <%=User.find(x.user_id).first_name.capitalize%> <%=User.find(x.user_id).last_name.capitalize%></a></span></h4>
+  <br>
   <%= erb :"/static/answers_form", :locals => {:x => x}%>
   <% all_answers = x.answers.reverse %>
   <% all_answers.each do |t| %>
-    <p><%=t.answer_content %></p>
+    <%=t.answer_content %>
+    <a href="/users/<%=User.find(t.user_id).id%>" class="username">by <%=User.find(t.user_id).first_name.capitalize%> <%=User.find(t.user_id).last_name.capitalize%></a>
+    <br>
   <% end %>
 <% end %>
