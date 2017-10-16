@@ -1,0 +1,8 @@
+<form action="/answer" method="post">
+  <input type="text" name="answer_content" required>
+  <input type="hidden" name="question_id" value="<%=x.id %>">
+
+  <input type="submit" value="Answer!">
+  <br>
+  <font color="red"><%= @answer_error%></font>
+</form>
