@@ -1,1 +1,53 @@
-<p> profile page</p>
+  <link rel="stylesheet" type"text/css" href="/css/main.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="/js/profile.js/?v=2.2"></script>
+
+
+
+<a href='/'><img src="/img/quora_logo.png" class="logo" /></a>
+
+
+<h1><%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %> profile</h1>
+
+<% if current_user != @user %>
+  <h2>you are <%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %></h2>
+  <button><a href="/users/<%=current_user.id%>">MY PROFILE</a></button>
+<% end %>
+
+
+<button><a href="/home">HOME</a></button>
+<button><a href="/logout">LOGOUT</a></button>
+<br><br>
+<button id="question_toggle">My Questions</button>
+<button id="answer_toggle">My Answers</button>
+<br>
+<div class="my_question">
+  <% question_list = Question.where(user_id: @user.id).reverse %>
+  <h2>My Questions (<%=question_list.count %>)</h2>
+  <% question_list.each do |x| %>
+    <p>---------------------------------------------------------</p>
+    <p><strong><%= x.question_content %></strong></p>
+    <%answer_list = Answer.where(question_id: x.id).reverse %>
+
+    <%answer_list.each do |y| %>
+      <%= y.answer_content %>
+      <a href="/users/<%=User.find(y.user_id).id%>" class="username">by <%=User.find(y.user_id).first_name.capitalize%> <%=User.find(y.user_id).last_name.capitalize%></a>
+      <br>
+    <% end %>
+  <% end %>
+</div>
+
+
+<div class="my_answer">
+  <% answer_list = Answer.where(user_id: @user.id).reverse %>
+  <h2>My Answers (<%=answer_list.count %>)</h2>
+  <% answer_list.each do |x| %>
+    <p>---------------------------------------------------------</p>
+    <% question = Question.find_by(id: x.question_id) %>
+    <strong><%= question.question_content %></strong>
+    <a href="/users/<%=User.find(question.user_id).id%>" class="username">by <%=User.find(question.user_id).first_name.capitalize%> <%=User.find(question.user_id).last_name.capitalize%></a>
+    <br>
+    <%= x.answer_content %>
+  <% end %>
+
+</div>

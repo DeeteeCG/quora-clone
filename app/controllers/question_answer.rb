@@ -19,3 +19,7 @@ post '/answer' do
     erb :"/static/home"
   end
 end
+
+get '/question' do
+  erb
+end
