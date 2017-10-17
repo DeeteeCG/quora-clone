@@ -1,7 +1,7 @@
 <form action="/question" method="post">
   <h3>Please type a question</h3>
-  <input type="text" name="question_content" required>
-
+  <!-- <input type="text" name="question_content" required> -->
+  <textarea cols="40" rows="3" name="question_content" required></textarea>
   <input type="submit" value="Ask now!">
   <br>
   <font color="red"><%= @question_error %></font>

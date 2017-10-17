@@ -17,6 +17,9 @@ require 'logger'
 require 'sinatra'
 require "sinatra/reloader" if development?
 require "byebug"
+## Sinatra app:
+require 'will_paginate'
+require 'will_paginate/active_record'  # or data_mapper/sequel
 
 	# embedded ruby
 require 'erb'
