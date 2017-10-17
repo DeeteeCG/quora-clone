@@ -31,6 +31,19 @@ patch '/question/:id/edit' do
   @question = Question.find(params[:id])
   if @question.update(params[:question])
     @message = "Question updated"
-    redirect to '/'
+    redirect '/'
+  end
+end
+
+get '/answer/:id/edit' do
+  @answer = Answer.find(params[:id])
+  erb :'/static/answer_edit'
+end
+
+patch '/answer/:id/edit' do
+  @answer = Answer.find(params[:id])
+  if @answer.update(params[:answer])
+    @message = "answer updated"
+    redirect '/'
   end
 end
