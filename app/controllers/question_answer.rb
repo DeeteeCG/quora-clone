@@ -1,5 +1,3 @@
-
-
 post '/question' do
   question = Question.new(question_content: params[:question_content], user_id: current_user.id)
   if question.save
@@ -22,4 +20,17 @@ end
 
 get '/question' do
   erb
+end
+
+get '/question/:id/edit' do
+  @question = Question.find(params[:id])
+  erb :"/static/question_edit"
+end
+
+patch '/question/:id/edit' do
+  @question = Question.find(params[:id])
+  if @question.update(params[:question])
+    @message = "Question updated"
+    redirect to '/'
+  end
 end

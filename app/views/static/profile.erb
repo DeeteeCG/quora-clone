@@ -2,8 +2,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="/js/profile.js/?v=2.2"></script>
 
-
-
 <a href='/'><img src="/img/quora_logo.png" class="logo" /></a>
 
 
@@ -26,7 +24,11 @@
   <h2>My Questions (<%=question_list.count %>)</h2>
   <% question_list.each do |x| %>
     <p>---------------------------------------------------------</p>
-    <p><strong><%= x.question_content %></strong></p>
+    <p><strong><%= x.question_content %></strong>
+      <% if x.user_id == current_user.id %>
+      <button><a href="/question/<%= x.id %>/edit">Edit</a></button>
+      <%end%>
+    </p>
     <%answer_list = Answer.where(question_id: x.id).reverse %>
 
     <%answer_list.each do |y| %>
