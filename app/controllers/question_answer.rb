@@ -47,3 +47,17 @@ patch '/answer/:id/edit' do
     redirect '/'
   end
 end
+
+get '/question/:id/delete' do
+  @question = Question.find(params[:id])
+  @question.destroy
+  @message = "Question has been successfully deleted."
+  redirect back
+end
+
+get '/answer/:id/delete' do
+  @answer = Answer.find(params[:id])
+  @answer.destroy
+  @message = "Answer has been successfully deleted"
+  redirect back
+end

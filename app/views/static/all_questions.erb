@@ -1,5 +1,4 @@
-
-  <link rel="stylesheet" type"text/css" href="/css/main.css">
+<link rel="stylesheet" type"text/css" href="/css/main.css">
 
 <% @question_page = Question.order('created_at DESC').paginate(:page => params[:page], :per_page => 3) %>
 
@@ -8,6 +7,7 @@
   <h4><%= x.question_content %>
     <% if x.user_id == current_user.id %>
     <button><a href="/question/<%= x.id %>/edit">Edit</a></button>
+    <button><a href="/question/<%= x.id%>/delete">Delete</a></button>
     <%end%>
     <span><a href="/users/<%=User.find(x.user_id).id%>" class="username">by <%=User.find(x.user_id).first_name.capitalize%> <%=User.find(x.user_id).last_name.capitalize%></a></span>
   </h4>
@@ -17,6 +17,7 @@
     <%=t.answer_content %>
     <% if t.user_id == current_user.id %>
     <button><a href="/answer/<%= t.id %>/edit">Edit</a></button>
+    <button><a href="/answer/<%=t.id%>/delete">Delete</a></button>
     <%end%>
     <a href="/users/<%=User.find(t.user_id).id%>" class="username">by <%=User.find(t.user_id).first_name.capitalize%> <%=User.find(t.user_id).last_name.capitalize%></a>
     <br>

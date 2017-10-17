@@ -27,6 +27,7 @@
     <p><strong><%= x.question_content %></strong>
       <% if x.user_id == current_user.id %>
       <button><a href="/question/<%= x.id %>/edit">Edit</a></button>
+      <button><a href="/question/<%= x.id%>/delete">Delete</a></button>
       <%end%>
     </p>
     <%answer_list = Answer.where(question_id: x.id).reverse %>
@@ -52,6 +53,7 @@
     <%= x.answer_content %>
     <% if x.user_id == current_user.id %>
     <button><a href="/answer/<%= x.id %>/edit">Edit</a></button>
+    <button><a href="/answer/<%=x.id%>/delete">Delete</a></button>
     <%end%>
   <% end %>
 
