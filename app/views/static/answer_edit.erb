@@ -1,0 +1,8 @@
+<h2>Edit your answer</h2>
+<form action="/answer/<%= @answer.id %>/edit" method="post">
+	<input type="hidden" name="_method" value="patch"><br>
+	<label>Answer</label><br>
+	<input type="text" value="<%= @answer.answer_content %>" name="answer[answer_content]"><br>
+	<br>
+	<input type="submit" value="Edit"><br>
+</form>

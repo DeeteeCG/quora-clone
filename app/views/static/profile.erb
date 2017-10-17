@@ -50,6 +50,9 @@
     <a href="/users/<%=User.find(question.user_id).id%>" class="username">by <%=User.find(question.user_id).first_name.capitalize%> <%=User.find(question.user_id).last_name.capitalize%></a>
     <br>
     <%= x.answer_content %>
+    <% if x.user_id == current_user.id %>
+    <button><a href="/answer/<%= x.id %>/edit">Edit</a></button>
+    <%end%>
   <% end %>
 
 </div>
