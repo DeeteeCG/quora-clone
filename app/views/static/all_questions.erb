@@ -1,9 +1,9 @@
 
   <link rel="stylesheet" type"text/css" href="/css/main.css">
 
+<% @question_page = Question.order('created_at DESC').paginate(:page => params[:page], :per_page => 3) %>
 
-<% all_questions = Question.all.reverse %>
-<% all_questions.each do |x| %>
+<% @question_page.each do |x| %>
   <p>-----------------------------------------------------------------------------------------------</p>
   <h4><%= x.question_content %>
     <% if x.user_id == current_user.id %>
@@ -22,3 +22,5 @@
     <br>
   <% end %>
 <% end %>
+
+<%= will_paginate @question_page %>

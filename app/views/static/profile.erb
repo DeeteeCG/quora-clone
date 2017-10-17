@@ -8,7 +8,7 @@
 <h1><%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %> profile</h1>
 
 <% if current_user != @user %>
-  <h2>you are <%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %></h2>
+  <h2>Logged in as <%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %></h2>
   <button><a href="/users/<%=current_user.id%>">MY PROFILE</a></button>
 <% end %>
 

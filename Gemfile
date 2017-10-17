@@ -32,6 +32,9 @@ group :development, :test do
 	gem 'shotgun'
 end
 
+## Gemfile for Rails 3+, Sinatra, or Merb
+gem 'will_paginate', '~> 3.1.1'
+
 group :production do
 	# Heroku
 	# ==================
