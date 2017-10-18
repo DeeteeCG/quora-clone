@@ -9,6 +9,12 @@
     <button><a href="/question/<%= x.id %>/edit">Edit</a></button>
     <button><a href="/question/<%= x.id%>/delete">Delete</a></button>
     <%end%>
+    <a href='/question/<%=x.id%>/upvote'>
+      <button>Upvote (<%=x.question_votes.where(vote: 1).count%>)</button>
+    </a>
+    <a href='/question/<%=x.id%>/downvote'>
+      <button>Downvote (<%=x.question_votes.where(vote: -1).count%>)</button>
+    </a>
     <span><a href="/users/<%=User.find(x.user_id).id%>" class="username">by <%=User.find(x.user_id).first_name.capitalize%> <%=User.find(x.user_id).last_name.capitalize%></a></span>
   </h4>
   <%= erb :"/static/answers_form", :locals => {:x => x}%>
@@ -19,6 +25,12 @@
     <button><a href="/answer/<%= t.id %>/edit">Edit</a></button>
     <button><a href="/answer/<%=t.id%>/delete">Delete</a></button>
     <%end%>
+    <a href='/answer/<%=t.id%>/upvote'>
+      <button>Upvote (<%=t.answer_votes.where(vote: 1).count%>)</button>
+    </a>
+    <a href='/answer/<%=t.id%>/downvote'>
+      <button>Downvote (<%=t.answer_votes.where(vote: -1).count%>)</button>
+    </a>
     <a href="/users/<%=User.find(t.user_id).id%>" class="username">by <%=User.find(t.user_id).first_name.capitalize%> <%=User.find(t.user_id).last_name.capitalize%></a>
     <br>
   <% end %>

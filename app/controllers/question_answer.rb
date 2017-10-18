@@ -61,3 +61,83 @@ get '/answer/:id/delete' do
   @message = "Answer has been successfully deleted"
   redirect back
 end
+
+get '/question/:id/upvote' do
+  if current_user
+    @question = Question.find(params[:id])
+    @question_vote = QuestionVote.find_by(question_id: @question.id, user_id: current_user.id)
+    if @question_vote != nil
+      if @question_vote.vote == 1
+        @question_vote.delete
+      else
+        @question_vote.update(vote: 1)
+      end
+    else
+      @question_vote = QuestionVote.create(question_id: @question.id, vote: 1, user_id: current_user.id)
+    end
+      redirect back
+  else
+    @login_message = 'Please log first.'
+    erb :'static/index'
+  end
+end
+
+get '/question/:id/downvote' do
+  if current_user
+    @question = Question.find(params[:id])
+    @question_vote = QuestionVote.find_by(question_id: @question.id, user_id: current_user.id)
+    if @question_vote != nil
+      if @question_vote.vote == -1
+        @question_vote.delete
+      else
+        @question_vote.update(vote: -1)
+      end
+    else
+      @question_vote = QuestionVote.create(question_id: @question.id, vote: -1, user_id: current_user.id)
+    end
+    redirect back
+  else
+    @login_message = 'Please log first.'
+    erb :'static/index'
+  end
+end
+
+get '/answer/:id/upvote' do
+  if current_user
+    @answer = Answer.find(params[:id])
+    @answer_vote = AnswerVote.find_by(answer_id: @answer.id, user_id: current_user.id)
+    if @answer_vote != nil
+      if @answer_vote.vote == 1
+        @answer_vote.delete
+      else
+        @answer_vote.update(vote: 1)
+      end
+    else
+      @answer_vote = AnswerVote.create(answer_id: @answer.id, vote: 1, user_id: current_user.id)
+    end
+      redirect back
+  else
+    @login_message = 'Please log first.'
+    erb :'static/index'
+  end
+end
+
+get '/answer/:id/downvote' do
+  if current_user
+    @answer = Answer.find(params[:id])
+    @answer_vote = AnswerVote.find_by(answer_id: @answer.id, user_id: current_user.id)
+    if @answer_vote != nil
+      if @answer_vote.vote == -1
+        @answer_vote.delete
+      else
+        @answer_vote.update(vote: -1)
+      end
+    else
+      @answer_vote = AnswerVote.create(answer_id: @answer.id, vote: -1, user_id: current_user.id)
+    end
+    redirect back
+  else
+    @login_message = 'Please log first.'
+    erb :'static/index'
+  end
+end
